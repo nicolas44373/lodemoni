@@ -1,0 +1,14 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/[action]/page": "app/admin/[action]/page.js",
+  "/admin/orders/edit/[id]/page": "app/admin/orders/edit/[id]/page.js",
+  "/admin/orders/page": "app/admin/orders/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/products/page": "app/admin/products/page.js",
+  "/category/[slug]/page": "app/category/[slug]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/order/page": "app/order/page.js",
+  "/page": "app/page.js",
+  "/product/[id]/page": "app/product/[id]/page.js"
+}
