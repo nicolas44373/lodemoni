@@ -38,10 +38,10 @@ export default function PendingOrdersPage() {
     router.push(`/admin/orders/edit/${orderId}`)
   }
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: Date | Timestamp): string => {
     // Asegurarse de que siempre trabajamos con un objeto Date
     const validDate = date instanceof Timestamp ? date.toDate() : new Date(date);
-    
+  
     if (validDate instanceof Date && !isNaN(validDate.getTime())) {
       return validDate.toLocaleDateString();
     } else {

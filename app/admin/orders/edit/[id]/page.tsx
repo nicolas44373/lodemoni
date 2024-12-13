@@ -44,10 +44,12 @@ export default function EditOrderPage({ params }: { params: { id: string } }) {
     }
   }
 
-  const calculateTotal = (items: OrderItem[]) => {
+  const calculateTotal = (items: OrderItem[]): number => {
     return items.reduce((sum, item) => {
       const product = products.find(p => p.id === item.productId)
-      return sum + (product ? product.price * item.quantity : 0)
+      const price = Number(product?.price ?? 0)
+      const quantity = Number(item.quantity ?? 0)
+      return Number(sum + (price * quantity))
     }, 0)
   }
 
@@ -131,9 +133,9 @@ export default function EditOrderPage({ params }: { params: { id: string } }) {
 
         <Card>
           <CardContent className="pt-6">
-            <div className="text-xl font-bold">
-              Total: ${calculateTotal(order.items).toFixed(2)}
-            </div>
+          <div className="text-xl font-bold">
+  Total: ${Number(calculateTotal(order.items)).toFixed(2)}
+</div>
           </CardContent>
           <CardFooter className="flex justify-end space-x-4">
             <Button type="button" variant="outline" onClick={() => router.push('/admin/orders')}>

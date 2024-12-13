@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { getProductsByCategory } from '../../../lib/products'
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
-  const products = await getProductsByCategory(params.slug as any)
+  // Aseguramos que params.slug es uno de los valores esperados
+  const products = await getProductsByCategory(params.slug as "sandwich" | "empanada" | "napolitana" | "pizza" | "matambre" | "menu")
 
   return (
     <div>
@@ -12,7 +13,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
           <div key={product.id} className="border p-4 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
             <p className="text-gray-600 mb-4">{product.description}</p>
-            <p className="text-lg font-bold mb-4">${product.price.toFixed(2)}</p>
+            <p className="text-lg font-bold mb-4">${(Number(product.price) || 0).toFixed(2)}</p>
             <Link href={`/product/${product.id}`} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
               Ver detalles
             </Link>
@@ -25,4 +26,3 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     </div>
   )
 }
-

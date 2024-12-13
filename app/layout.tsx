@@ -1,7 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { Home, ShoppingCart, BarChart, Package, List } from 'lucide-react'
+import { Home, ShoppingCart, BarChart, List } from 'lucide-react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,47 +26,39 @@ export default function RootLayout({
               </Link>
             </div>
             <nav>
-              <ul className="flex space-x-6 items-center">
-                <li>
-                  <Link href="/" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
-                    <Home className="w-5 h-5" />
-                    <span className="hidden md:inline">Inicio</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/order" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
-                    <ShoppingCart className="w-5 h-5" />
-                    <span className="hidden md:inline">Hacer Pedido</span>
-                  </Link>
-                </li>
-                <li className="group relative">
-                  <span className="flex items-center space-x-2 hover:text-red-100 transition-colors cursor-pointer">
-                    <Package className="w-5 h-5" />
-                    <span className="hidden md:inline">Administración</span>
-                  </span>
-                  <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-lg py-2 px-4 space-y-2 z-50 top-full right-0 mt-2 min-w-[200px]">
-                    <li>
-                      <Link href="/admin/products" className="flex items-center space-x-2 hover:text-red-600 py-1">
-                        <List className="w-4 h-4" />
-                        <span>Administrar Productos</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/admin/orders" className="flex items-center space-x-2 hover:text-red-600 py-1">
-                        <ShoppingCart className="w-4 h-4" />
-                        <span>Pedidos Pendientes</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/admin/dashboard" className="flex items-center space-x-2 hover:text-red-600 py-1">
-                        <BarChart className="w-4 h-4" />
-                        <span>Panel de Control</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+  <ul className="flex space-x-6 items-center">
+    <li>
+      <Link href="/" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
+        <Home className="w-5 h-5" />
+        <span className="hidden md:inline">Inicio</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/order" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
+        <ShoppingCart className="w-5 h-5" />
+        <span className="hidden md:inline">Hacer Pedido</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/admin/products" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
+        <List className="w-5 h-5" />
+        <span className="hidden md:inline">Productos</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/admin/orders" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
+        <ShoppingCart className="w-5 h-5" />
+        <span className="hidden md:inline">Pedidos</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/admin/dashboard" className="flex items-center space-x-2 hover:text-red-100 transition-colors">
+        <BarChart className="w-5 h-5" />
+        <span className="hidden md:inline">Panel</span>
+      </Link>
+    </li>
+  </ul>
+</nav>
           </div>
         </header>
 

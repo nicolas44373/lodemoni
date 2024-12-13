@@ -9,11 +9,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { collection, getDocs } from 'firebase/firestore';
 import { ShoppingCart, MapPin, User } from 'lucide-react';
 import db from '../lib/firebase';
-
+import { createOrder } from '../lib/orders';
 const categories = [
   { value: 'sandwich', label: 'Sándwiches', icon: '🥪' },
   { value: 'empanada', label: 'Empanadas', icon: '🥟' },
@@ -66,19 +65,19 @@ export default function OrderForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
     const orderItemsFiltered = orderItems.filter(item => item.quantity > 0);
     if (!orderItemsFiltered.length) {
       alert('Debe seleccionar al menos un producto.');
       setIsSubmitting(false);
       return;
     }
-
+  
     const total = orderItemsFiltered.reduce((sum, item) => {
       const product = products.find(p => p.id === item.productId);
       return sum + (product?.price || 0) * item.quantity;
     }, 0);
-
+  
     try {
       const newOrder = {
         customerName: name,
@@ -86,7 +85,10 @@ export default function OrderForm() {
         items: orderItemsFiltered,
         total,
       };
-
+  
+      // Use the createOrder function to save the order to Firestore
+      await createOrder(newOrder);
+  
       console.log('Nuevo pedido:', newOrder);
       alert('Pedido enviado con éxito.');
       router.push('/');
